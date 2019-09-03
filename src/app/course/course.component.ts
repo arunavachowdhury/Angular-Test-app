@@ -1,4 +1,6 @@
+import { CourseService } from './../course.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Course } from '../course';
 
 @Component({
   selector: 'course-component',
@@ -6,16 +8,17 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./course.component.css']
 })
 export class CourseComponent implements OnInit {
-@Input() isFavorite: boolean;
-@Output() change = new EventEmitter();
-  constructor() { }
+  public courses = [];
+  @Output() public details : number = 0;
+
+  constructor(private service: CourseService) { }
 
   ngOnInit() {
+    this.service.getCourseList().subscribe(data => this.courses = data);
   }
 
-  onClick(){
-    this.isFavorite = !this.isFavorite;
-    this.change.emit(this.isFavorite);
+  detailView(course: Course){
+    this.details = course.id;
   }
 
 }

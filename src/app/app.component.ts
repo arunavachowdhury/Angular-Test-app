@@ -7,13 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'My-test-app';
-  post = {
-    title: "Title",
-    isFavorite: true
-  }
-
-  isFavoriteChanged(isChanged){
-    console.log("Event Triggered :" +isChanged);
-    
-  }
+  
 }
